@@ -40,7 +40,7 @@ public class Main {
 		}
 		while (true) {
 			Socket socket = server.accept();
-			System.out.println("Connection establised");
+			System.out.println("Connection establiseed");
 			InputStream inputStream = socket.getInputStream();
 			handleSocketConnection(inputStream);
 		}
@@ -65,11 +65,9 @@ public class Main {
 		}).start();
 	}
 
-	private static void process(JSONObject json) throws JSONException {
+	private static void process(JSONObject json) throws JSONException {	
 		new Thread(() -> {
 			try {
-				
-
 			String type = json.getString("type");
 			switch (type) {
 			case "MOUSE_SCROLL": {
@@ -108,6 +106,11 @@ public class Main {
 				double y = location.getY() - dy;
 
 				robot.mouseMove((int) x, (int) y);
+			}
+				break;
+			case "ACC_MOVE": {
+				//Implement here
+				
 			}
 				break;
 			case "KEYBOARD_INPUT": {
