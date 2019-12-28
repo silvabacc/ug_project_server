@@ -25,7 +25,7 @@ public class Main {
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) throws IOException, AWTException {
-		ServerSocket server = new ServerSocket(24);
+		ServerSocket server = new ServerSocket(1024);
 		robot = new Robot();
 
 		Enumeration<NetworkInterface> ni = NetworkInterface.getNetworkInterfaces();
