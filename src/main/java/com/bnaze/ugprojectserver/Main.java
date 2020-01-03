@@ -20,7 +20,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Main {
-
+	
+	static double a1x = 0;
+	static double a1y = 0;
+	
+	static double v1x = 0;
+	static double p1x = 0;
+	
+	static double v2x = 0;
+	static double p2y = 0;
+	
 	private static Robot robot;
 
 	@SuppressWarnings("resource")
@@ -98,6 +107,8 @@ public class Main {
 
 				float dx = value.getInt("x");
 				float dy = value.getInt("y");
+				
+				System.out.println(dx + " " + dy);
 
 				Point location = MouseInfo.getPointerInfo()
 					.getLocation();
@@ -110,7 +121,21 @@ public class Main {
 				break;
 			case "ACC_MOVE": {
 				//Implement here
+				JSONObject value = json.getJSONObject("value");
+
+				float dx = value.getInt("x");
+				float dy = value.getInt("y");
 				
+				System.out.println(dx + " " + dy);
+
+				Point location = MouseInfo.getPointerInfo()
+					.getLocation();
+
+				double x = location.getX() - dx;
+				double y = location.getY() - dy;
+
+				robot.mouseMove((int) x, (int) y);
+
 			}
 				break;
 			case "KEYBOARD_INPUT": {
