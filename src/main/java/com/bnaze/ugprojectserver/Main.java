@@ -54,7 +54,7 @@ public class Main {
 			handleSocketConnection(inputStream);
 		}
 	}
-
+	
 	private static void handleSocketConnection(InputStream inputStream) throws IOException {
 		new Thread(() -> {
 			BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
@@ -130,7 +130,28 @@ public class Main {
 
 				Point location = MouseInfo.getPointerInfo()
 					.getLocation();
+				
+				//System.out.println(location);
+				
+				double x = location.getX() - dx;
+				double y = location.getY() - dy;
 
+				robot.mouseMove((int) x, (int) y);
+
+			}
+			break;
+			case "AIR_MOUSE": {
+				//Implement here
+				JSONObject value = json.getJSONObject("value");
+
+				float dx = value.getInt("x");
+				float dy = value.getInt("y");
+				
+				System.out.println(dx + " " + dy);
+				
+				Point location = MouseInfo.getPointerInfo()
+						.getLocation();
+				
 				double x = location.getX() - dx;
 				double y = location.getY() - dy;
 
