@@ -43,13 +43,14 @@ public class Main {
 			Enumeration<InetAddress> en = n.getInetAddresses();
 			while (en.hasMoreElements()) {
 				InetAddress i = (InetAddress) en.nextElement();
-				String address = i.getHostName();
-				System.out.println(String.format("server started at %s:%s", address, server.getLocalPort()));
+				String address = i.getHostAddress();
+				System.out.println(String.format("Server started at %s:%s", address, server.getLocalPort()));
 			}
 		}
+		
 		while (true) {
 			Socket socket = server.accept();
-			System.out.println("Connection establiseed");
+			System.out.println("Connection establised");
 			InputStream inputStream = socket.getInputStream();
 			handleSocketConnection(inputStream);
 		}
@@ -62,11 +63,10 @@ public class Main {
 			try {
 				while ((text = br.readLine()) != null) {
 					try {
-					JSONObject json = new JSONObject(text);
-					process(json);
+						JSONObject json = new JSONObject(text);
+						process(json);
 					}
 					catch(JSONException e) {
-						
 					}
 				}
 			} catch (IOException e) {
@@ -107,8 +107,6 @@ public class Main {
 
 				float dx = value.getInt("x");
 				float dy = value.getInt("y");
-				
-				System.out.println(dx + " " + dy);
 
 				Point location = MouseInfo.getPointerInfo()
 					.getLocation();
@@ -125,13 +123,9 @@ public class Main {
 
 				float dx = value.getInt("x");
 				float dy = value.getInt("y");
-				
-				System.out.println(dx + " " + dy);
 
 				Point location = MouseInfo.getPointerInfo()
 					.getLocation();
-				
-				//System.out.println(location);
 				
 				double x = location.getX() - dx;
 				double y = location.getY() - dy;
@@ -141,13 +135,10 @@ public class Main {
 			}
 			break;
 			case "AIR_MOUSE": {
-				//Implement here
 				JSONObject value = json.getJSONObject("value");
 
 				float dx = value.getInt("x");
 				float dy = value.getInt("y");
-				
-				System.out.println(dx + " " + dy);
 				
 				Point location = MouseInfo.getPointerInfo()
 						.getLocation();
@@ -163,6 +154,7 @@ public class Main {
 				JSONObject value = json.getJSONObject("value");
 				int keyCode = value.getInt("keyCode");
 				if(keyCode == 0) {
+					robot.keyPress(KeyEvent.VK_BACK_SPACE);
 					break;
 				}
 				boolean isShiftPressed = value.getBoolean("shift");
