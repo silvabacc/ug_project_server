@@ -2,7 +2,7 @@
 
 The server side code which runs in the laptop/computer and allows mobile device to control remotely 
 
-#Prerequisites
+## Prerequisites
 
 - Java (last tested with Java 11)
 - Add the lib/json.jar as a module dependency in your environment
